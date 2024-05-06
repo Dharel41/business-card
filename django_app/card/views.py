@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from .forms import CardForm
 
+
 @login_required(login_url="/admin/login/")
 def add_card(request):
     if request.method == 'POST':
@@ -18,7 +19,7 @@ def add_card(request):
 
 
 @login_required(login_url="/admin/login/")
-def show_card(request, pk):
+def show_card(request, pk: int):
     card_instance = get_object_or_404(Card, pk=pk)
     return render(request, 'show_card.html', {'card': card_instance})
 
@@ -28,7 +29,7 @@ def send_card(request):
     return render(request, 'send_card.html')
 
 @login_required(login_url="/admin/login/")
-def send_to_ceremeo(request, pk, step_number):
+def send_to_ceremeo(request, pk: int, step_number: int) -> HttpResponse:
     card_instance = get_object_or_404(Card, pk=pk)
     if step_number in (1,2,3):
         phone_number = request.POST.get('phone_number')
