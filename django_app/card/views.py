@@ -33,10 +33,8 @@ def send_to_ceremeo(request, pk, step_number):
     if step_number in (1,2,3):
         phone_number = request.POST.get('phone_number')
         # need number validation
-        print('xxxxxxxxxxxxxxxxx')
 
     if int(step_number) == 1:
-        print('1111111111111111111111111111')
         """
         SEND DO CEREMEO
             {
@@ -48,7 +46,6 @@ def send_to_ceremeo(request, pk, step_number):
         return render(request, 'ceremeo_1.html', {'phone_number': phone_number, 'card': card_instance})
     
     elif int(step_number) == 2:
-        print('2222222222222222222')
         first_last_name = request.POST.get('first_last_name')
         email = request.POST.get('email')
         company_name = request.POST.get('company_name')
@@ -68,7 +65,6 @@ def send_to_ceremeo(request, pk, step_number):
         return render(request, 'ceremeo_2.html', {'phone_number': phone_number, 'card': card_instance})
     
     elif int(step_number) == 3:
-        print('333333333333333333')
         date = request.POST.get('date')
         description = request.POST.get('description')
         """
@@ -83,6 +79,5 @@ def send_to_ceremeo(request, pk, step_number):
         return render(request, 'ceremeo_3.html', {'card': card_instance, 'number': random.randint(1,8)})
     
     else:
-        print('44444444444444444')
         return render(request, 'ceremeo_3.html', {'card': card_instance, 'number': random.randint(1,8)})
 
