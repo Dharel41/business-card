@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="header" align="center">
+    <img src="/media/{{card.photo}}" style="max-width:30px"/> Aaa... i jeszcze jedno!
+</div>
+<div class="container" align="center">
+    <p>Jeśli chciałbyś żebym zadzwonił konkretnego dnia, godzinie lub w temacie to napisz! Dzięki!.</p>
+    <body>
+        <form action = "{% url 'card:send_to_ceremeo' card.pk 3%}" method = "post" id="1">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="date" placeholder="Data" maxlength="255" id="id_date">
+            </p>
+                <textarea name="description" placeholder="Temat" maxlength="500" id="id_description"></textarea>
+            <p>
+                <input hidden type="text" name="phone_number" placeholder="Numer telefonu" maxlength="17" id="id_phone_number" value="{{phone_number}}">
+            </p>
+            <input type="submit" value="Wyślij">
+        </form>
+        <p>Teraz już na pewno będzie mem :)!</p>
+    </body>
+</div>

@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="header" align="center">
+    <img src="/media/{{card.photo}}" style="max-width:30px"/> Dziękuje!
+</div>
+<div class="container" align="center">
+    <p>Za chwilę dostaniesz ode mnie SMS.</p>
+    <p>Możesz jeszcze podać jak mam Cię zapisać?</p>
+    <body>
+        <form action = "{% url 'card:send_to_ceremeo' card.pk 2%}" method = "post" id="1">
+            {% csrf_token %}
+            <p>
+                <input type="text" name="first_last_name" placeholder="Twoje imię i nazwisko" maxlength="255" id="id_first_last_name">
+            </p>
+            <p>
+                <input type="text" name="email" placeholder="Adres email" maxlength="254" id="id_email">
+            </p>
+            <p>
+                <input type="text" name="company_name" placeholder="Firma/miejsce kontaktu" maxlength="255" id="id_company_name">
+            </p>
+            <p>
+                <input hidden type="text" name="phone_number" placeholder="Numer telefonu" maxlength="17" id="id_phone_number" value="{{phone_number}}">
+            </p>
+            <input type="submit" value="Dalej">
+        </form>
+        <p>PS. Przejdź dalej to zobaczysz mema!</p>
+    </body>
+</div>

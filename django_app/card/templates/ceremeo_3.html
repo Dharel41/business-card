@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="header" align="center">
+    <img src="/media/{{card.photo}}" style="max-width:30px"/> W kontakcie!
+</div>
+<div class="container" align="center">
+    <p>Dziękuje za przekazanie kontaktu, mój otrzymasz do 5 minut. Do usłyszenia!</p>
+    <body>
+        {% csrf_token %}
+        <img src="/media/meme/{{number}}.jpg" style="max-width:300px"/>
+        <p>Tak, to jest ten mem! Jest ok?</p>
+        <form action = "{% url 'card:send_to_ceremeo' card.pk 4%}" method = "post" id="1">
+            {% csrf_token %}
+            <input type="submit" value="NIE OK" style="background-color: rgb(212, 48, 48);">
+        </form>
+        <form action="{% url 'card:show_card' card.pk %}"  method="POST" id="2">
+            {% csrf_token %}
+            <input type="submit" value="OK">
+        </form>
+    </body>
+</div>

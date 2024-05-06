@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="header" align="center">
+    <p>Cześć tu {{card.first_last_name}} z {{card.company_name}}</p>
+</div>
+<div class="container" align="center">
+    <p>Proszę, zostaw mi numer kontaktowy, a ja wyślę Ci moją wizytówkę.</p>
+    <img src="/media/{{card.photo}}" style="max-width:200px"/>
+    <body>
+        <form action = "{% url 'card:send_to_ceremeo' card.pk 1%}" method = "post" id="1">
+            {% csrf_token %}
+            <p>
+                <input required type="text" name="phone_number" placeholder="Numer telefonu" maxlength="17" id="id_phone_number">
+            </p>
+            <input type="submit" value="Dalej">
+        </form>
+        <form action="{% url 'card:send_card' %}"  method="POST" id="2">
+            {% csrf_token %}
+            <p>
+                Lub jeśli nie chcesz to
+            </p>
+            <input type="submit" value="Wyślij wizytówkę">
+        </form>
+    </body>
+</div>

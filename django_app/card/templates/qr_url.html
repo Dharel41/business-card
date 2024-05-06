@@ -1,0 +1,42 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<html>
+    <head>
+        <title>QR code</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            function generateBarCode()
+            {
+                var nric = $('#text').val();
+                var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=50x50';
+                $('#barcode').attr('src', url);
+            }
+        </script>
+    </head>
+
+    <div class="header" align="center">
+        <p>Oto twoje dane</p>
+    </div>
+    <body>
+        <div class="container" align="center">
+            <label>Kod QR</label> 
+            <br/>
+            <img id='barcode' 
+                    src="https://api.qrserver.com/v1/create-qr-code/?data=http://{{ request.META.HTTP_HOST }}/app/show-card/{{pk}}&amp;size=100x100" 
+                    alt="" 
+                    title="HELLO" 
+                    width="200" 
+                    height="200" 
+            />
+        </div>
+        <div class="container" align="center">
+            <label>Adres URL</label>
+            <br/>
+            <input id="text" type="text"
+                value="http://{{ request.META.HTTP_HOST }}/app/show-card/{{pk}}" style="Width:20%"
+                readonly
+            /> 
+        </div>
+    </body>
+</html>

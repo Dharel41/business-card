@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<div class="header" align="center">
+    <p>Wpisz dane aby wygenerować QR i URL</p>
+</div>
+<div class="container" align="center">
+    <p>Konfig wizytówki</p>
+    <body>
+        <form action = "" method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Dalej">
+        </form>
+    </body>
+</div>
